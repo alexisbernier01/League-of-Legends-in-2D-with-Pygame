@@ -1,37 +1,32 @@
-import pygame
-import sys
+import pygame as pg
 
-from entities import Player, Minion, Turret, Nexus
+pg.init()
 
-pygame.init()
-width, height = 1280, 720
+screen = pg.display.set_mode((1280,720))
 
-screen = pygame.display.set_mode((width, height)) # Initializes pygame display 'Surface' to for display.
-font = pygame.font.SysFont('Candara', 30) 
-clock = pygame.time.Clock() 
+clock = pg.time.Clock()
 
-player = Player()
-minion = Minion()
-turret = Turret()
-nexus = Nexus()
+# load SR
+SR_jpg = pg.image.load("summoners_rift.jpg").convert()
 
-print(minion.hitpoints)
 
-# Game loop
 while True:
-    keys_pressed = pygame.key.get_pressed()
+    # Process player inputs.
+    for event in pg.event.get():
+        if event.type == pg.QUIT:
+            pg.quit()
+            raise SystemExit
 
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            pygame.quit()
-            sys.exit()
+    # Do logical updates here.
+    # ...
 
-    
-    screen.fill("black")
-    screen.blit(player.img, player.img_rect)
-    pygame.display.update()
-    clock.tick(200)
+    screen.fill("purple")  # Fill the display with a solid color
 
+    # Render the graphics here.
+    # ...
+
+    pg.display.flip()  # Refresh on-screen display
+    clock.tick(60)         # wait until next frame (at 60 FPS)
 
 
     
